@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ExoPlayerTest</string>
+
+    <string name="content_url"><![CDATA[https://storage.googleapis.com/exoplayer-test-media-1/mkv/android-screens-lavf-56.36.100-aac-avc-main-1280x720.mkv]]></string>
+
+    <string name="ad_tag_url"><![CDATA[https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=]]></string>
+
+    <string name="new_video_url">https://izlehls.sondakika.com/2019/11/05/son-dakika-fahrettin-altun-dan-yuksek-istisar-4919-12586689.mp4/playlist.m3u8</string>
+
+</resources>
