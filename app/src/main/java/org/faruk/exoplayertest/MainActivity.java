@@ -3,6 +3,9 @@ package org.faruk.exoplayertest;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
 import com.google.android.exoplayer2.source.smoothstreaming.SsMediaSource;
 import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import com.google.android.exoplayer2.ui.PlaybackControlView;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private DataSource.Factory dataSourceFactory;
 
     String u = "https://izlehls.sondakika.com/2019/11/05/son-dakika-fahrettin-altun-dan-yuksek-istisar-4919-12586689.mp4/playlist.m3u8";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         playerView = findViewById(R.id.exoPlayerView);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this);
         playerView.setPlayer(simpleExoPlayer);
+
+        initFullScreenButton();
 
         String videoUrl = getString(R.string.new_video_url);
         dataSourceFactory = new DefaultDataSourceFactory(this, Util.getUserAgent(this, getString(R.string.app_name)));
@@ -162,7 +169,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        playerView.setControllerShowTimeoutMs(5000);
+        //playerView.setControllerShowTimeoutMs(5000);
+
+
+    }
+
+    private void initFullScreenButton() {
+
+        ImageButton fullScreenButton = playerView.findViewById(R.id.custom_exo_fullscreen);
+        if (fullScreenButton != null) {
+            fullScreenButton.setOnClickListener(v -> {
+                Toast.makeText(MainActivity.this, "FullScreen Butona Tıklandı.", Toast.LENGTH_SHORT).show();
+            });
+        }
 
 
     }
@@ -185,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static void disableSSLCertificateVerify() {
-        TrustManager[] trustAllCerts = new TrustManager[] {
+        TrustManager[] trustAllCerts = new TrustManager[]{
                 new X509TrustManager() {
                     public X509Certificate[] getAcceptedIssuers() {
                         X509Certificate[] myTrustedAnchors = new X509Certificate[0];
@@ -193,10 +212,12 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void checkClientTrusted(X509Certificate[] certs, String authType) {}
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                    }
 
                     @Override
-                    public void checkServerTrusted(X509Certificate[] certs, String authType) {}
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                    }
                 }
         };
 
